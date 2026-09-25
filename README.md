@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# eunkyo3.github.io
 
-## Getting Started
+정은교(Jung Eunkyo)의 포트폴리오 — https://eunkyo3.github.io
 
-First, run the development server:
+페이지 전체를 HTTP 요청 하나의 여정(Client → Middleware → Service → Database → Logs → Response)으로 구성했습니다.
+
+## 스택
+
+Next.js (App Router, static export) · TypeScript · Tailwind CSS · Motion · GitHub Pages
+
+## 내용 수정
+
+콘텐츠는 컴포넌트와 분리되어 있어 `src/content/`의 데이터 파일만 고치면 됩니다.
+
+| 파일 | 내용 |
+|---|---|
+| `profile.ts` | 이름, 소개, 핵심 역량, 연락처 |
+| `projects.ts` | 프로젝트 카드와 케이스 스터디 |
+| `stack.ts` | 기술 스택과 사용처 |
+| `experience.ts` | 경력 로그 |
+| `credentials.ts` | 수상 · 자격증 · 교육 |
+
+`main`에 push하면 GitHub Actions가 빌드해 Pages로 배포합니다.
+
+## 로컬 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # out/ 에 정적 파일 생성
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`dev`·`build` 전에 `scripts/subset-font.mjs`가 사이트에 쓰인 글자만 담은 Pretendard 서브셋을 자동 생성합니다.

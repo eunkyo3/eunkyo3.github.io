@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ─────────────────────────────────────────────
+   Dark is the default. Light applies when the user picks it, or on
+   first visit when the OS prefers light (before JS sets data-theme). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0e100f;
+  --surface: #151816;
+  --border: #252a27;
+  --border-strong: #3a413c;
+  --text: #e7e6e0;
+  --muted: #8c8f88;
+  --accent: #7fd99a;
+  --accent-ink: #0e100f;
+  --accent-soft: rgb(127 217 154 / 0.1);
+  --warn: #d9b26f;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="light"] {
+  --bg: #f5f4ef;
+  --surface: #ffffff;
+  --border: #dedcd3;
+  --border-strong: #b9b6aa;
+  --text: #171916;
+  --muted: #5f615a;
+  --accent: #186a3b;
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(24 106 59 / 0.08);
+  --warn: #8a5a12;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg: #f5f4ef;
+    --surface: #ffffff;
+    --border: #dedcd3;
+    --border-strong: #b9b6aa;
+    --text: #171916;
+    --muted: #5f615a;
+    --accent: #186a3b;
+    --accent-ink: #ffffff;
+    --accent-soft: rgb(24 106 59 / 0.08);
+    --warn: #8a5a12;
+    color-scheme: light;
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn: var(--warn);
+
+  --font-sans: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-pretendard), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ─── Hero entrance: pure CSS, and motion-only (no fade) so the
+   hero text is painted — and counted for LCP — on the very first frame. ── */
+@keyframes rise {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.rise {
+  animation: rise 400ms var(--ease-out-soft) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Request log typing: width grows one monospace cell per step. */
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.typed {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: calc(var(--chars) * 1ch);
+  animation: type calc(var(--chars) * 45ms) steps(var(--chars), end) 350ms both;
+}
+
+.typed-after {
+  animation: fade-in 300ms var(--ease-out-soft) both;
+  animation-delay: calc(var(--chars) * 45ms + 450ms);
+}
+
+.caret {
+  animation: blink 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

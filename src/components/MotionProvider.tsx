@@ -1,0 +1,14 @@
+"use client";
+
+import { LazyMotion, MotionConfig } from "motion/react";
+
+// Animation features arrive after first paint; until then `m` components render statically.
+const loadFeatures = () => import("@/lib/motion-features").then((mod) => mod.default);
+
+export function MotionProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <LazyMotion features={loadFeatures} strict>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LazyMotion>
+  );
+}

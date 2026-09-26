@@ -557,7 +557,7 @@ export const projects: Project[] = [
       "PC 변환 파이프라인과 장비 측정 하네스를 분리하고, 캡처·전처리·추론·후처리를 구간별로 따로 쟀습니다. CPU/NPU 클럭을 고정하고 고정되지 않은 측정은 원천 차단했습니다.",
     metrics: [
       { label: "yolov8n @640 · 종단 처리량", after: "32.1 fps" },
-      { label: "반복 측정 편차", after: "0.19~0.68%" },
+      { label: "반복 측정 편차 (클럭 고정 · 3회)", after: "0.19~0.33%" },
     ],
     layers: ["infra"],
     stack: ["Python", "RKNN-Toolkit2", "ONNX", "ultralytics YOLOv8", "RK3588 NPU", "Ubuntu"],

@@ -58,6 +58,10 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
     body: (
       <>
         <p>{project.approach}</p>
+        <p className="mt-6 text-muted">
+          <span className="mr-2 font-mono text-xs text-accent">why:</span>
+          {project.why}
+        </p>
         <div className="mt-8">
           <ArchStrip owned={project.layers} />
         </div>
@@ -150,7 +154,6 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
       ),
     });
   }
-  blocks.push({ label: "Why", title: "기술 선택 이유", body: <p>{project.why}</p> });
   if (cs) blocks.push({ label: "Retro", title: "회고", body: <p>{cs.retrospective}</p> });
 
   return (

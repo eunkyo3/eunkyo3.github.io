@@ -168,7 +168,7 @@ function ComponentStrip({ components }: { components: NonNullable<Project["compo
   );
 }
 
-/** Full-width row: text on the left, media (when there is any) on the right. */
+/** Full-width row: title and headline number on the left, media (when there is any) on the right. */
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [primary] = project.metrics;
   const hasMedia = !!project.media;
@@ -186,20 +186,22 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               <MetricValue metric={primary} size="lg" />
             </div>
           )}
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <Step n="01" label="Problem">
-              {project.problem}
-            </Step>
-            <Step n="02" label="Approach">
-              {project.approach}
-            </Step>
-          </div>
         </div>
         {hasMedia && (
           <div className="lg:col-span-5">
             <ProjectMedia media={project.media} title={project.title} />
           </div>
         )}
+      </div>
+
+      {/* Full width below the media too, so the text never squeezes into a narrow column beside it. */}
+      <div className="grid gap-6 px-5 pb-8 sm:px-8 md:grid-cols-2">
+        <Step n="01" label="Problem">
+          {project.problem}
+        </Step>
+        <Step n="02" label="Approach">
+          {project.approach}
+        </Step>
       </div>
 
       <Footer project={project} wide />

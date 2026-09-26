@@ -19,6 +19,11 @@ function MetaBar({ project, index }: { project: Project; index: number }) {
         {project.period}
         <span className="mx-2">/</span>
         {project.role}
+        {project.status && (
+          <span className="ml-3 rounded-[2px] border border-warn px-1.5 py-0.5 text-[11px] leading-none text-warn">
+            {project.status}
+          </span>
+        )}
       </span>
       <span aria-hidden className="transition-colors group-hover:text-accent">
         case study →
@@ -53,6 +58,9 @@ function Footer({ project, wide = false }: { project: Project; wide?: boolean })
       <div className="relative z-10 flex gap-5">
         {project.links.live && <ExternalLink href={project.links.live}>live</ExternalLink>}
         {project.links.github && <ExternalLink href={project.links.github}>github</ExternalLink>}
+        {!project.links.live && !project.links.github && (
+          <span className="font-mono text-xs text-muted">private repo</span>
+        )}
       </div>
     </div>
   );
@@ -72,7 +80,7 @@ function SecondaryMetrics({ metrics, size }: { metrics: Project["metrics"]; size
 
 function Title({ project, large }: { project: Project; large?: boolean }) {
   return (
-    <h3
+    <h4
       id={`p-${project.slug}`}
       className={
         large
@@ -83,7 +91,7 @@ function Title({ project, large }: { project: Project; large?: boolean }) {
       <Link href={`/projects/${project.slug}`} data-card-link className={stretched}>
         {project.title}
       </Link>
-    </h3>
+    </h4>
   );
 }
 
@@ -132,8 +140,31 @@ export function FeaturedProjectCard({ project, index }: { project: Project; inde
         )}
       </div>
 
+      {project.components && <ComponentStrip components={project.components} />}
+
       <Footer project={project} wide />
     </article>
+  );
+}
+
+/** Parts of a multi-repo system, one line each; the case study carries the full story. */
+function ComponentStrip({ components }: { components: NonNullable<Project["components"]> }) {
+  return (
+    <div className="border-t border-line px-5 py-6 sm:px-8">
+      <p className="font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
+        <span className="text-accent">03</span> Components · {components.length}
+      </p>
+      <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {components.map((c) => (
+          <li key={c.name} className="min-w-0">
+            <p className="font-mono text-[13px] text-fg">{c.name}</p>
+            <p className="mt-1 text-[13px] text-muted">{c.kind}</p>
+            <p className="mt-2 text-[14px] leading-relaxed">{c.summary}</p>
+            <p className="mt-2 font-mono text-[11px] text-accent">{c.share}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

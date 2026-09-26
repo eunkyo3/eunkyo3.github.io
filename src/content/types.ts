@@ -33,16 +33,45 @@ export interface Metric {
 export interface Decision {
   title: string;
   chosen: string;
+  /** Only alternatives that were actually weighed; leave empty rather than invent one. */
   alternatives: string[];
   reason: string;
 }
 
+/** A problem hit in the work and how it was traced. `result` only when measured. */
+export interface Incident {
+  title: string;
+  symptom: string;
+  cause: string;
+  fix: string;
+  result?: string;
+}
+
+/** One part of a multi-repo system, described on its own inside the parent project. */
+export interface SystemComponent {
+  name: string;
+  /** What it is and what it runs on. */
+  kind: string;
+  /** What this person owned in it. */
+  share: string;
+  summary: string;
+  points: string[];
+}
+
+export type ProjectOrg = "company" | "personal";
+
 export interface Project {
   slug: string;
   title: string;
+  org: ProjectOrg;
   summary: string;
   period: string;
   role: string;
+  /** Short state label, e.g. `진행 중`. Omit for finished work. */
+  status?: string;
+  /** Customer or delivery line, anonymised (e.g. `국내 대기업 A사`). */
+  client?: string;
+  /** The first featured project of each group is rendered large. */
   featured?: boolean;
   problem: string;
   approach: string;
@@ -53,9 +82,11 @@ export interface Project {
   why: string;
   links: { live?: string; github?: string };
   media?: { type: "video" | "image"; src: string; poster?: string; alt: string };
+  components?: SystemComponent[];
   caseStudy?: {
     context: string;
     decisions: Decision[];
+    incidents?: Incident[];
     retrospective: string;
   };
 }

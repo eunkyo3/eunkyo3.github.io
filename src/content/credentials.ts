@@ -47,6 +47,7 @@ export const credentials: Credential[] = [
     date: "2024-10",
     kind: "EDU",
     title: "2024 화이트해커 양성교육",
+    issuer: "현대오토에버 / 함께일하는재단",
     period: "2024.07 ~ 2024.10",
     details: [
       "애플리케이션 해킹 — 비즈니스 로직 취약점 분석, 공격/방어 원리",

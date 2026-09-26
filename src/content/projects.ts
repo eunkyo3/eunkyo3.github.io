@@ -409,13 +409,18 @@ export const projects: Project[] = [
       "12단계 적재 파이프라인에서 점수·등급·순위를 미리 계산하고, 품질 게이트를 통과할 때만 원자적으로 교체했습니다. 제품유형 판정 기준을 표기가 아닌 카테고리로 바꿔(ADR-0007) 오판정을 구조적으로 없앴습니다.",
     metrics: [
       { label: "음료 제품유형 오판정", before: "2,376건", after: "0건" },
-      { label: "적재·등급 산출 제품", after: "70,013건" },
+      { label: "적재한 제품 (등급 산출 69,989건)", after: "70,013건" },
       { label: "등급 로직 변경 시 재계산", before: "~11.5시간", after: "수 분" },
     ],
     layers: ["frontend", "backend", "database", "infra"],
     stack: ["Next.js 15", "TypeScript", "SQLite", "Drizzle ORM", "Recharts", "Vitest", "Playwright", "Docker"],
     why: "데이터가 월 단위로만 바뀌어, 조회 시 계산 대신 사전계산 + 읽기 전용 SQLite가 가장 단순하고 빠르다고 판단했습니다 (ADR-0004·0005).",
     links: { github: "https://github.com/eunkyo3/NutriRank" },
+    media: {
+      type: "image",
+      src: "/media/nutrirank-home.webp",
+      alt: "NutriRank 첫 화면: 수록 제품 70,013개, 등급 산출 69,989개, 소비자 카테고리 9종과 A~E 전체 등급 분포 막대",
+    },
     caseStudy: {
       context:
         "소비자가 영양성분표를 해석하지 않고도 '어차피 과자를 고른다면 그중 무엇이 나은가'에 답할 수 있게 하는 것이 목표였습니다. 원천은 식약처 「전국통합식품영양성분정보(가공식품) 표준데이터」이고, 등급은 2023 Nutri-Score 알고리즘으로 산출한 2차 가공 결과입니다.",

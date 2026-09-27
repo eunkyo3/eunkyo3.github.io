@@ -165,7 +165,8 @@ export const projects: Project[] = [
     title: "TA0q · 설비 유지보수 관리",
     org: "company",
     summary: "엑셀 93개 시트로 관리하던 설비 점검 이력·설정값·거래처를 모바일 대응 웹 서비스로 옮긴 사내 시스템",
-    period: "2025.01 – 2026.09",
+    period: "2025.01 – 현재",
+    status: "운영 중",
     role: "2인 공통 베이스 이후 단독 개발 · 커밋 79% · v1.0~v1.4.1 릴리스",
     problem:
       "유지보수 기록을 엑셀 관리대장 93개 시트로 관리해 동시 편집, 이력 추적, 권한 통제가 어려웠고, 현장에서 휴대폰으로 바로 입력할 수 없었습니다.",
@@ -253,7 +254,7 @@ export const projects: Project[] = [
     title: "UWB 실내 위치측위 대시보드",
     org: "company",
     summary: "UWB 태그의 실시간 위치를 2D·3D 지도에 표시하고, 보안구역 침입 경보·이동 리플레이·히트맵을 제공하는 웹앱",
-    period: "2026.08 – 2026.09",
+    period: "2026.08 – 현재",
     role: "1인 개발 · 선행개발",
     status: "고객 PoC 진행 중",
     problem:
@@ -263,7 +264,6 @@ export const projects: Project[] = [
     metrics: [
       { label: "장기 리플레이 조회", before: "99.7초", after: "0.06초" },
       { label: "범위 조회 API", before: "2.6초", after: "0.08초" },
-      { label: "API 회귀 점검", after: "46/46 통과" },
     ],
     layers: ["frontend", "backend", "database", "infra"],
     stack: ["Node.js 24", "ws", "mqtt.js", "TimescaleDB", "PostgreSQL 16", "Canvas", "three.js", "n8n", "Rocket.Chat", "Docker Compose"],
@@ -297,8 +297,8 @@ export const projects: Project[] = [
       ],
       incidents: [
         {
-          title: "며칠치 리플레이에 99.7초",
-          symptom: "며칠치 이동 기록을 리플레이하면 응답까지 99.7초가 걸렸습니다.",
+          title: "장기 리플레이에 99.7초",
+          symptom: "장기 구간 이동 기록을 리플레이하면 응답까지 99.7초가 걸렸습니다.",
           cause: "실행 계획을 보니 원본 약 64만 행을 스캔했고, work_mem 부족으로 temp spill이 2,842블록 발생하고 있었습니다.",
           fix: "장기 구간은 연속 집계의 1분 가중평균으로 응답하고, work_mem을 15.8MB에서 64MB로 올렸습니다. 프론트는 DOM 재생성을 300ms 단위로 묶고, 히트맵은 오프스크린에 한 번 그려 재사용합니다.",
           result: "장기 리플레이 99.7초 → 0.06초, 범위 조회 2.6초 → 0.08초.",
@@ -318,7 +318,7 @@ export const projects: Project[] = [
         },
       ],
       retrospective:
-        "자동 테스트가 없고 검증 스크립트를 저장소에 남기지 않았습니다. 첫 커밋에 v1~v21이 한꺼번에 들어가 이력을 추적하기 어렵습니다. 다시 한다면 검증 스크립트를 저장소에 포함하고 기능 단위로 커밋하겠습니다.",
+        "전수 점검 67항목으로 결함 16건을 찾아 고치고 API 회귀 46항목을 통과시켰지만, 자동 테스트가 없고 검증 스크립트를 저장소에 남기지 않아 다시 돌려 볼 수 없습니다. 첫 커밋에 v1~v21이 한꺼번에 들어가 이력을 추적하기 어렵습니다. 다시 한다면 검증 스크립트를 저장소에 포함하고 기능 단위로 커밋하겠습니다.",
     },
   },
   {
@@ -334,7 +334,7 @@ export const projects: Project[] = [
     approach:
       "센서 통신 방식을 내장 웹 뷰어 코드에서 역분석해 캡처·기록·재생 파이프라인을 만들고, 가설마다 대조 실험으로 센서 특성을 확정했습니다. 검출은 규칙 기반 필터 체인으로 시작하고, 센서가 오기 전에 합성 장면 생성기로 테스트부터 갖췄습니다.",
     metrics: [
-      { label: "100초 · 1,979프레임 연속 캡처 중 끊김", after: "0건" },
+      { label: "반사물을 둘 때 기준 영역 밝기 변화 (자동 → 고정 게인)", before: "−76.6%", after: "+10.0%" },
     ],
     layers: ["infra"],
     stack: ["Python", "NumPy", "OpenCV", "h5py", "pytest", "MaixSense A075V (ToF)", "NanoPi R6C"],

@@ -1,14 +1,9 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-/**
- * Appears once the visitor is a screen deep. On the home page at `lg` and up the
- * request rail already jumps to the top, so the button stays out of the way there.
- */
+/** Appears once the visitor is a screen deep, on every page and screen size. */
 export function BackToTop() {
-  const isHome = usePathname() === "/";
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -46,7 +41,7 @@ export function BackToTop() {
       aria-label="맨 위로"
       className={`fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-30 flex h-10 items-center gap-1.5 rounded-[3px] border border-line bg-surface/95 px-3 font-mono text-xs text-muted shadow-sm transition-[opacity,color,border-color] duration-200 hover:border-line-strong hover:text-fg sm:right-6 sm:bottom-6 ${
         visible ? "opacity-100" : "pointer-events-none invisible opacity-0"
-      } ${isHome ? "lg:hidden" : ""}`}
+      }`}
     >
       <span aria-hidden className="text-accent">
         ↑

@@ -6,6 +6,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { CommandPalette } from "@/components/CommandPalette";
 import { ConsoleGreeting } from "@/components/ConsoleGreeting";
 import { MotionProvider } from "@/components/MotionProvider";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { themeInitScript } from "@/components/ThemeToggle";
 import { profile } from "@/content/profile";
 
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <MotionProvider>{children}</MotionProvider>
         <CommandPalette />
         <BackToTop />
+        <ScrollToTop />
         <ConsoleGreeting />
       </body>
     </html>

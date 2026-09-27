@@ -3,7 +3,8 @@ import type { Project } from "./types";
 // Order matters: company work first, then personal; the first `featured` project of a group is rendered large.
 // Personal numbers are quoted from each repo's README / ADR / release notes. Company numbers come from the
 // owner's write-up of commit history and reports; anything it marked unverified is left out. Customers are
-// anonymised and company repos are private, so those projects carry no links.
+// anonymised; company repos (and the 정처기 배틀 repo, whose questions come from a third-party blog)
+// are private, so those projects carry no links.
 export const projects: Project[] = [
   {
     slug: "mgs",
@@ -516,7 +517,7 @@ export const projects: Project[] = [
     layers: ["frontend", "backend", "database"],
     stack: ["Node.js 22+", "Express", "Socket.io", "SQLite (better-sqlite3)", "Vanilla JS", "node:test", "Docker Compose"],
     why: "대전 상태 전이를 Date.now()를 쓰지 않는 순수 함수로 두어, 타이머·재접속·동시 제출 같은 경합을 실제 시간을 기다리지 않고 테스트로 재현했습니다.",
-    links: { github: "https://github.com/eunkyo3/jeong-cheo-gi" },
+    links: {},
     media: {
       type: "image",
       src: "/media/jeongcheogi-battle.webp",
@@ -524,7 +525,7 @@ export const projects: Project[] = [
     },
     caseStudy: {
       context:
-        "2020-1회부터 2026-2회까지 21회차의 복원 기출을 코드 139 · SQL 36 · 이론 245문항으로 나누고, 코드 문항은 C · Java · Python별로 골라 풀 수 있게 했습니다. 지인끼리 쓰는 비공개 학습용이라 클라우드 대신 내 PC에서 띄우며, 문제 출처가 외부 블로그여서 공개 호스팅은 하지 않습니다.",
+        "2020-1회부터 2026-2회까지 21회차의 복원 기출을 코드 139 · SQL 36 · 이론 245문항으로 나누고, 코드 문항은 C · Java · Python별로 골라 풀 수 있게 했습니다. 지인끼리 쓰는 비공개 학습용이라 클라우드 대신 내 PC에서 띄우며, 문제 출처가 외부 블로그여서 공개 호스팅을 하지 않고 저장소도 비공개로 둡니다.",
       decisions: [
         {
           title: "대전 로직은 순수 리듀서",

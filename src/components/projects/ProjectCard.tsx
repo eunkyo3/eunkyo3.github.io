@@ -12,7 +12,7 @@ const stretched = "outline-none after:absolute after:inset-0 after:content-['']"
 
 function MetaBar({ project, index }: { project: Project; index: number }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-line px-5 py-3 font-mono text-xs text-muted sm:px-8">
+    <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-line px-5 py-3 font-mono text-xs text-muted sm:px-8 lg:text-[13px]">
       <span>
         <span className="text-accent">{String(index + 1).padStart(2, "0")}</span>
         <span className="mx-2">/</span>
@@ -35,10 +35,10 @@ function MetaBar({ project, index }: { project: Project; index: number }) {
 function Step({ n, label, children }: { n: string; label: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
+      <p className="font-mono text-[11px] tracking-[0.08em] text-muted uppercase lg:text-xs">
         <span className="text-accent">{n}</span> {label}
       </p>
-      <div className="mt-2 text-[15px] leading-relaxed">{children}</div>
+      <div className="mt-2 text-[15px] leading-relaxed lg:text-[17px]">{children}</div>
     </div>
   );
 }
@@ -51,7 +51,7 @@ function Footer({ project, wide = false }: { project: Project; wide?: boolean })
       }`}
     >
       <ArchStrip owned={project.layers} />
-      <p className="text-[15px] leading-relaxed">
+      <p className="text-[15px] leading-relaxed lg:text-base">
         <span className="mr-2 font-mono text-xs text-accent">why:</span>
         {project.why}
       </p>
@@ -151,16 +151,16 @@ export function FeaturedProjectCard({ project, index }: { project: Project; inde
 function ComponentStrip({ components }: { components: NonNullable<Project["components"]> }) {
   return (
     <div className="border-t border-line px-5 py-6 sm:px-8">
-      <p className="font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
+      <p className="font-mono text-[11px] tracking-[0.08em] text-muted uppercase lg:text-xs">
         <span className="text-accent">03</span> Components · {components.length}
       </p>
       <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {components.map((c) => (
           <li key={c.name} className="min-w-0">
-            <p className="font-mono text-[13px] text-fg">{c.name}</p>
-            <p className="mt-1 text-[13px] text-muted">{c.kind}</p>
-            <p className="mt-2 text-[14px] leading-relaxed">{c.summary}</p>
-            <p className="mt-2 font-mono text-[11px] text-accent">{c.share}</p>
+            <p className="font-mono text-[13px] text-fg lg:text-sm">{c.name}</p>
+            <p className="mt-1 text-[13px] text-muted lg:text-sm">{c.kind}</p>
+            <p className="mt-2 text-[14px] leading-relaxed lg:text-base">{c.summary}</p>
+            <p className="mt-2 font-mono text-[11px] text-accent lg:text-xs">{c.share}</p>
           </li>
         ))}
       </ul>

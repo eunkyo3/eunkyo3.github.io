@@ -36,7 +36,7 @@ function LogPanel({ id, file, rows }: { id: string; file: string; rows: LogRow[]
         <span className="text-muted">tail -f </span>
         <span className="text-accent">{file}</span>
       </h3>
-      <ol aria-labelledby={headingId} className="font-mono text-[13px] leading-relaxed">
+      <ol aria-labelledby={headingId} className="font-mono text-[13px] leading-relaxed lg:text-sm">
         {rows.map((r) => {
           const line = (
             <>
@@ -66,7 +66,7 @@ function LogPanel({ id, file, rows }: { id: string; file: string; rows: LogRow[]
                     {r.details?.map((d, i) => (
                       <li key={d} className="flex gap-3 pl-[6.75rem] text-muted max-sm:pl-0">
                         <span aria-hidden className="shrink-0 whitespace-nowrap">{i === r.details!.length - 1 && !r.url ? "└─" : "├─"}</span>
-                        <span className="font-sans text-[14px] text-fg">{d}</span>
+                        <span className="font-sans text-[14px] text-fg lg:text-[15px]">{d}</span>
                       </li>
                     ))}
                     {r.url && (

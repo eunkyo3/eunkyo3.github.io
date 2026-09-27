@@ -38,7 +38,7 @@ function Block({ label, title, children }: { label: string; title: string; child
   return (
     <section className="grid gap-4 border-t border-line py-12 lg:grid-cols-12 lg:gap-8">
       <div className="lg:col-span-4">
-        <p className="font-mono text-[11px] tracking-[0.08em] text-accent uppercase">{label}</p>
+        <p className="font-mono text-[11px] tracking-[0.08em] text-accent uppercase lg:text-xs">{label}</p>
         <h2 className="mt-2 font-display text-2xl font-bold tracking-[-0.025em]">{title}</h2>
       </div>
       <div className="lg:col-span-8">{children}</div>
@@ -83,11 +83,11 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           {project.components.map((c) => (
             <li key={c.name}>
               <h3 className="font-mono text-[15px] text-fg">{c.name}</h3>
-              <p className="mt-1 font-mono text-[12px] text-muted">
+              <p className="mt-1 font-mono text-[12px] text-muted lg:text-[13px]">
                 {c.kind} <span className="text-accent">· {c.share}</span>
               </p>
               <p className="mt-3">{c.summary}</p>
-              <ul className="mt-3 space-y-1.5 text-[15px] text-muted">
+              <ul className="mt-3 space-y-1.5 text-[15px] text-muted lg:text-base">
                 {c.points.map((pt) => (
                   <li key={pt} className="flex gap-3">
                     <span aria-hidden className="shrink-0 font-mono text-line-strong">
@@ -112,7 +112,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           {cs.decisions.map((d) => (
             <li key={d.title}>
               <h3 className="font-semibold">{d.title}</h3>
-              <p className="mt-2 font-mono text-[13px]">
+              <p className="mt-2 font-mono text-[13px] lg:text-sm">
                 <span className="text-accent">chose</span> {d.chosen}
                 {d.alternatives.length > 0 && (
                   <>
@@ -137,7 +137,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           {cs.incidents.map((inc) => (
             <li key={inc.title}>
               <h3 className="font-semibold">{inc.title}</h3>
-              <dl className="mt-3 grid gap-x-4 gap-y-2 text-[15px] sm:grid-cols-[4.5rem_minmax(0,1fr)]">
+              <dl className="mt-3 grid gap-x-4 gap-y-2 text-[15px] sm:grid-cols-[4.5rem_minmax(0,1fr)] lg:text-base">
                 {(
                   [
                     ["symptom", inc.symptom],
@@ -149,7 +149,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
                   .filter(([, v]) => v)
                   .map(([k, v]) => (
                     <div key={k} className="contents">
-                      <dt className={`pt-0.5 font-mono text-[12px] ${k === "result" ? "text-accent" : "text-muted"}`}>{k}</dt>
+                      <dt className={`pt-0.5 font-mono text-[12px] lg:text-[13px] ${k === "result" ? "text-accent" : "text-muted"}`}>{k}</dt>
                       <dd className={k === "result" ? "" : "text-muted"}>{v}</dd>
                     </div>
                   ))}
@@ -181,7 +181,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           </h1>
           <p className="mt-5 max-w-2xl text-xl text-muted">{project.summary}</p>
 
-          <dl className="mt-10 grid grid-cols-2 gap-6 font-mono text-[13px] sm:grid-cols-4">
+          <dl className="mt-10 grid grid-cols-2 gap-6 font-mono text-[13px] sm:grid-cols-4 lg:text-sm">
             <div>
               <dt className="text-muted">org</dt>
               <dd className="mt-1">{ORG_LABEL[project.org]}</dd>

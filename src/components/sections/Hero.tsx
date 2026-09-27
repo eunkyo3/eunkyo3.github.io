@@ -97,7 +97,7 @@ export function Hero() {
                 </span>
                 <span>
                   <span className="block font-semibold">{c.title}</span>
-                  <span className="block font-mono text-[13px] text-muted">{c.detail}</span>
+                  <span className="block font-mono text-[13px] text-muted lg:text-sm">{c.detail}</span>
                 </span>
               </li>
             ))}

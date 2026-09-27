@@ -33,10 +33,10 @@ export function Stack() {
               <tbody>
                 {group.items.map((item) => (
                   <tr key={item.name} className="border-b border-line last:border-b-0 align-top">
-                    <th scope="row" className="w-[38%] px-5 py-3 font-mono text-[13px] font-medium">
+                    <th scope="row" className="w-[38%] px-5 py-3 font-mono text-[13px] font-medium lg:text-sm">
                       {item.name}
                     </th>
-                    <td className="py-3 pr-5 text-[14px] leading-relaxed text-muted">{item.usedIn}</td>
+                    <td className="py-3 pr-5 text-[14px] leading-relaxed text-muted lg:text-base">{item.usedIn}</td>
                   </tr>
                 ))}
               </tbody>

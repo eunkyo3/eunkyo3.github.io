@@ -18,7 +18,7 @@ export function About() {
         <SectionHeading id="about-title" route="Middleware" node="auth · parse" title="일하는 방식" />
       </Reveal>
       <Reveal className="grid gap-12 lg:grid-cols-12 lg:gap-8">
-        <dl className="font-mono text-[13px] lg:col-span-5">
+        <dl className="font-mono text-[13px] lg:col-span-5 lg:text-sm">
           {headers.map(([key, value]) => (
             <div key={key} className="grid grid-cols-[7.5rem_1fr] gap-3 border-b border-line py-3 first:border-t">
               <dt className="text-muted">{key}:</dt>

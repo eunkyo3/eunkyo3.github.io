@@ -10,7 +10,7 @@ const SIZES = {
 export function MetricValue({ metric, size = "lg" }: { metric: Metric; size?: keyof typeof SIZES }) {
   return (
     <div>
-      <p className="font-mono text-xs text-muted">{metric.label}</p>
+      <p className="font-mono text-xs text-muted lg:text-[13px]">{metric.label}</p>
       <p className={`mt-1 font-display leading-[1.05] font-bold tracking-[-0.035em] tabular-nums ${SIZES[size]}`}>
         {metric.before && (
           <>

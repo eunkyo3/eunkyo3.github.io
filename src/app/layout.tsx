@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { BackToTop } from "@/components/BackToTop";
 import { CommandPalette } from "@/components/CommandPalette";
 import { ConsoleGreeting } from "@/components/ConsoleGreeting";
 import { MotionProvider } from "@/components/MotionProvider";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <MotionProvider>{children}</MotionProvider>
         <CommandPalette />
+        <BackToTop />
         <ConsoleGreeting />
       </body>
     </html>

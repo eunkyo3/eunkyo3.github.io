@@ -17,7 +17,7 @@ export const projects: Project[] = [
     problem:
       "게이트 장비의 MCU는 UART로만 통신하고, 시스템은 설치·운영 인력이 적은 고객 현장에 온프레미스로 들어갑니다. 장비 이벤트는 유실 없이 저장하면서도, 네트워크가 끊기거나 대시보드가 느려질 때 서로의 경로를 막지 않아야 했습니다.",
     approach:
-      "장비 → 엣지 게이트웨이 → 수집 서버 → 운영 대시보드 전 구간을 만들고 납품 전 부하테스트로 검증했습니다. 게이트웨이는 UART 수신과 네트워크 전송의 수명을 큐로 분리했고, 서버는 저장은 유실 없이·실시간 알림은 격리된 best-effort로 처리하는 비대칭 백프레셔로 설계했습니다.",
+      "장비 → 엣지 게이트웨이 → 수집 서버 → 운영 대시보드 전 구간을 만들고 납품 전 부하테스트로 검증했습니다. 게이트웨이는 장비에서 읽는 일과 서버로 보내는 일을 분리해 네트워크가 끊겨도 수신이 멈추지 않게 했고, 서버는 저장은 한 건도 잃지 않게, 실시간 알림은 밀리면 건너뛰고 나중에 따라잡게 해 두 경로가 서로를 막지 않도록 설계했습니다.",
     metrics: [
       { label: "장비 500대 · 50시간 연속 부하, 약 2,700만 건 중 전송 실패", after: "0건" },
       { label: "게이트웨이 오프라인 버퍼", before: "약 8분치", after: "약 2.7시간치" },
@@ -47,7 +47,7 @@ export const projects: Project[] = [
           "UART 수신과 네트워크 전송의 수명을 분리하고, 전송 세션은 TaskGroup으로 묶어 오류 시 지수 백오프(2→30초)로 재시작",
           "큐 포화 시 UART 읽기가 멈추던 문제를 논블로킹 drop-oldest 큐와 put_front로 해결",
           "UART 스니퍼를 직접 만들어 설치 앱의 과잉 인코딩과 응답 잘림을 찾고, 앱 수정 없이 호환",
-          "현장 WiFi 설정(nmcli)은 리스트 인자로만 호출하고 비밀번호는 stdin으로 전달 · 테스트 136건",
+          "현장 WiFi 설정(nmcli)은 리스트 인자로만 호출하고 비밀번호는 stdin으로 전달 · 테스트 136개",
         ],
       },
       {
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     org: "company",
     summary: "엑셀 93개 시트로 관리하던 설비 점검 이력·설정값·거래처를 모바일 대응 웹 서비스로 옮긴 사내 시스템",
     period: "2025.01 – 2026.09",
-    role: "2인 공통 베이스 이후 단독 개발 · 커밋 79% · v1.0~v1.4 릴리스",
+    role: "2인 공통 베이스 이후 단독 개발 · 커밋 79% · v1.0~v1.4.1 릴리스",
     problem:
       "유지보수 기록을 엑셀 관리대장 93개 시트로 관리해 동시 편집, 이력 추적, 권한 통제가 어려웠고, 현장에서 휴대폰으로 바로 입력할 수 없었습니다.",
     approach:
@@ -472,7 +472,7 @@ export const projects: Project[] = [
     media: { type: "image", src: "/media/royale-deck.webp", alt: "덱 점수 화면: 종합 점수 88.5와 구조·레벨·메타 층별 점수" },
     caseStudy: {
       context:
-        "로그인 없이 태그만으로 쓰는 공개 웹앱입니다. API 키는 서버에만 두고 브라우저는 항상 FastAPI 프록시를 거치며, 서버는 랭커 공개 배틀 외의 개인 데이터를 저장하지 않습니다.",
+        "로그인 없이 플레이어 태그만으로 쓰도록 설계한 웹앱으로, Docker Compose로 실행합니다. API 키는 서버에만 두고 브라우저는 항상 FastAPI 프록시를 거치며, 서버는 랭커 공개 배틀 외의 개인 데이터를 저장하지 않습니다.",
       decisions: [
         {
           title: "스냅샷을 원자적으로 교체",
@@ -485,7 +485,7 @@ export const projects: Project[] = [
           chosen: "상호작용 모형(E3)",
           alternatives: ["덱 승률 차(E1)", "카드 품질 차(E2)"],
           reason:
-            "7만여 전 백테스트에서 E1은 어느 분할에서도 상수 0.5를 이기지 못했습니다. 달력 분할은 수집량 급증으로 학습 표본이 0이 되어 데이터량·플레이어 기준 분할로 검증했고, E3가 세 분할 모두에서 95% 구간이 0 위였습니다.",
+            "7만여 전 백테스트에서 E1은 어느 분할에서도 상수 0.5를 이기지 못했습니다. 달력 분할은 수집량 급증으로 학습 표본이 0이 되어 데이터량·플레이어 기준 분할로 검증했고, E3는 세 분할 모두에서 95% 신뢰구간이 0보다 컸습니다.",
         },
         {
           title: "과거 기록을 직접 만든다",
@@ -576,12 +576,12 @@ export const projects: Project[] = [
     approach:
       "역·승하차·혼잡도 공공데이터를 DuckDB로 적재해 시간대 기준값을 만들고, 실시간에서만 얻을 수 있는 앞 열차와의 배차간격과 시발 여부로 보정했습니다. 착석 추천은 정거장마다 시간을 흘려 해당 시각 통계를 다시 읽습니다.",
     metrics: [
-      { label: "노선별 기준 배차간격 편차 (반영한 33개 셀)", before: "최대 +78.6%", after: "±0.2%" },
+      { label: "배차간격 기준표 실측 보정 (수집 로그 18,421 표본)", after: "33개 셀" },
       { label: "자동화 테스트", after: "354개" },
     ],
     layers: ["frontend", "backend", "database", "infra"],
     stack: ["Python 3.12", "FastAPI", "DuckDB", "pandas", "httpx", "Leaflet", "pytest", "Docker Compose"],
-    why: "근거 없는 계수는 적합하지 않았습니다. 재차 실측이 없어 맞출 수 없는 시발 보정과 배차 민감도는 미보정으로 명시하고, 추정치의 오차(MAE 19.2%p)도 README에 그대로 남겼습니다.",
+    why: "근거 없는 계수는 데이터에 억지로 맞추지 않았습니다. 재차인원(열차 안 인원) 실측이 없어 맞출 수 없는 시발 보정과 배차 민감도는 미보정으로 명시하고, 추정치의 오차(MAE 19.2%p)도 README에 그대로 남겼습니다.",
     links: { github: "https://github.com/eunkyo3/subway-seat-finder" },
     caseStudy: {
       context:
@@ -620,7 +620,7 @@ export const projects: Project[] = [
           symptom: "배차가 성긴 5·6·7·9호선의 예측이 상시 높게 나왔습니다.",
           cause: "노선 구분 없는 기준 배차간격표가 사실상 2호선 시각표여서, 실측/기준 비율이 늘 1을 넘었습니다.",
           fix: "수집 로그 18,421 표본에서 모호한 0초와 반복 재관측을 걸러 노선×시간대 중앙값을 뽑고, 표본 30개 이상인 33개 셀을 반영했습니다.",
-          result: "반영한 셀의 편차가 최대 +78.6%에서 ±0.2%로 수렴했습니다.",
+          result: "같은 수집 로그로 다시 재면 반영한 셀의 편차가 ±0.2% 안으로 들어옵니다. 다른 기간 데이터로 한 검증은 아직 없습니다.",
         },
       ],
       retrospective:
@@ -674,9 +674,9 @@ export const projects: Project[] = [
   },
   {
     slug: "nanopi-yolov8",
-    title: "RK3588 NPU · YOLOv8 성능 한계 측정",
+    title: "RK3588S NPU · YOLOv8 성능 한계 측정",
     org: "personal",
-    summary: "NanoPi R6C(RK3588) NPU에서 YOLOv8 INT8 추론의 성능 한계를 재현 가능한 수치로 확정한 벤치마크",
+    summary: "NanoPi R6C(RK3588S) NPU에서 YOLOv8 INT8 추론의 성능 한계를 재현 가능한 수치로 확정한 벤치마크",
     period: "2026.08 – 2026.09",
     role: "1인 · 측정 설계와 도구 개발",
     problem:
@@ -688,7 +688,7 @@ export const projects: Project[] = [
       { label: "반복 측정 편차 (클럭 고정 · 3회)", after: "0.19~0.33%" },
     ],
     layers: ["infra"],
-    stack: ["Python", "RKNN-Toolkit2", "ONNX", "ultralytics YOLOv8", "RK3588 NPU", "Ubuntu"],
+    stack: ["Python", "RKNN-Toolkit2", "ONNX", "ultralytics YOLOv8", "RK3588S NPU", "Ubuntu"],
     why: "NPU가 지원하지 않는 DFL 연산을 airockchip 개조 헤드로 그래프 밖에 빼내고, 후처리는 호스트(NumPy)가 맡게 했습니다.",
     links: { github: "https://github.com/eunkyo3/nano_pi_r6c_yolov8" },
     caseStudy: {

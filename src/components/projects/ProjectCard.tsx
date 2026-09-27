@@ -59,7 +59,7 @@ function Footer({ project, wide = false }: { project: Project; wide?: boolean })
         {project.links.live && <ExternalLink href={project.links.live}>live</ExternalLink>}
         {project.links.github && <ExternalLink href={project.links.github}>github</ExternalLink>}
         {!project.links.live && !project.links.github && (
-          <span className="font-mono text-xs text-muted">private repo</span>
+          <span className="font-mono text-xs text-muted">private repo · 코드 비공개</span>
         )}
       </div>
     </div>

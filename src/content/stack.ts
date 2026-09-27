@@ -59,8 +59,8 @@ export const stack: StackGroup[] = [
       { name: "GitHub Actions", usedIn: "On-Quest CI(typecheck·test·build), 이 사이트 배포" },
       { name: "GitHub Releases", usedIn: "NutriRank·Royale 데이터 스냅샷 배포" },
       { name: "n8n", usedIn: "On-Quest Slack 알림, UWB Rocket.Chat 경보 중계" },
-      { name: "pytest · JUnit5 · Vitest", usedIn: "게이트웨이 136건, TA0q 376건, NutriRank 단위 테스트" },
-      { name: "ARM64 보드 · RK3588", usedIn: "NanoPi 엣지 게이트웨이(systemd), YOLOv8 NPU 추론 측정" },
+      { name: "pytest · JUnit5 · Vitest", usedIn: "게이트웨이 136개, TA0q 376개, NutriRank 단위 테스트" },
+      { name: "ARM64 보드 · RK3588S", usedIn: "NanoPi 엣지 게이트웨이(systemd), YOLOv8 NPU 추론 측정" },
     ],
   },
 ];

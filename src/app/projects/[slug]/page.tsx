@@ -167,7 +167,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
       <SiteHeader />
       <main id="main" className="mx-auto max-w-[1080px] px-4 pb-24 sm:px-6">
         <nav aria-label="이동 경로" className="pt-10">
-          <Link href="/#projects" className="font-mono text-[13px] text-muted transition-colors hover:text-fg">
+          <Link href="/#projects" className="-my-2 inline-block py-2 font-mono text-[13px] text-muted transition-colors hover:text-fg">
             ← GET /#projects
           </Link>
         </nav>

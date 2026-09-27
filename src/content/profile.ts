@@ -15,7 +15,7 @@ export const profile: Profile = {
     "개발에서도 AI를 구현 속도를 높이는 도구로 씁니다. 설계안은 제가 먼저 세우고, AI의 개선안은 검토해 맞다고 판단한 것만 반영하며, 결과는 테스트와 실측으로 직접 검증합니다.",
   ],
   competencies: [
-    { layer: "UI", title: "데이터를 읽히는 화면으로", detail: "React · Next.js · TypeScript" },
+    { layer: "UI", title: "데이터가 한눈에 읽히는 화면", detail: "React · Next.js · TypeScript" },
     { layer: "API", title: "도메인 로직과 API 설계", detail: "Spring Boot · FastAPI · NestJS" },
     { layer: "DATA", title: "수집·적재 파이프라인과 배포", detail: "PostgreSQL · MQTT · Docker" },
   ],

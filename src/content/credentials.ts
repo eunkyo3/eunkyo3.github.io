@@ -30,7 +30,7 @@ export const credentials: Credential[] = [
     kind: "AWARD",
     title: "AI Youth Challenge — 교육부 장관상",
     issuer: "포스코DX",
-    period: "2024.07 ~ 2024.08",
+    period: "2024.07 – 2024.08",
     details: ["기술로 농인의 정보 접근성을 높이고 소통의 장벽을 낮추는 SignGPT 팀 프로젝트"],
     url: "https://www.signgpt.org/",
   },
@@ -48,7 +48,7 @@ export const credentials: Credential[] = [
     kind: "EDU",
     title: "2024 화이트해커 양성교육",
     issuer: "현대오토에버 / 함께일하는재단",
-    period: "2024.07 ~ 2024.10",
+    period: "2024.07 – 2024.10",
     details: [
       "애플리케이션 해킹 — 비즈니스 로직 취약점 분석, 공격/방어 원리",
       "네트워크 보안 — Wireshark PCAP 심층 분석, 네트워크 기반 공격 시나리오 실증",
@@ -62,7 +62,7 @@ export const credentials: Credential[] = [
     kind: "EDU",
     title: "AI 슈퍼컴퓨터 청소년 캠프",
     issuer: "UNIST / KISTI",
-    period: "2024.07 ~ 2024.08",
+    period: "2024.07 – 2024.08",
     details: [
       "HPC 환경에서 AI 모델 학습·병렬 처리, 슈퍼컴퓨터 활용",
       "TensorFlow·Keras 이미지 분류와 레이트레이싱 실습으로 대규모 딥러닝 워크로드 경험",
@@ -73,7 +73,7 @@ export const credentials: Credential[] = [
     kind: "EDU",
     title: "2023 화이트해커 양성교육",
     issuer: "현대오토에버 / 함께일하는재단",
-    period: "2023.07 ~ 2023.10",
+    period: "2023.07 – 2023.10",
     details: [
       "웹 해킹·CTF 실습, Wireshark 네트워크 공격 패킷 분석",
       "파이썬 기반 보안 업무 자동화, ChatGPT를 활용한 정보보안 학습",
@@ -85,7 +85,7 @@ export const credentials: Credential[] = [
     kind: "EDU",
     title: "사이버가디언즈",
     issuer: "한국정보기술연구원",
-    period: "2022.09 ~ 2022.12",
+    period: "2022.09 – 2022.12",
     details: ["C 언어 기초, 네트워크 구조와 패킷 동작 원리, Git 협업·버전 관리로 보안 분야 기초 확립"],
   },
 ];

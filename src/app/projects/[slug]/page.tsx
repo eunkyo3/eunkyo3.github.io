@@ -24,7 +24,13 @@ export async function generateMetadata({ params }: PageProps<"/projects/[slug]">
     title: project.title,
     description: project.summary,
     alternates: { canonical: `/projects/${slug}/` },
-    openGraph: { title: project.title, description: project.summary, url: `/projects/${slug}/`, images: ["/og.png"] },
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      url: `/projects/${slug}/`,
+      images: [{ url: `/projects/${slug}/og.png`, width: 1200, height: 630, alt: project.title }],
+    },
+    twitter: { card: "summary_large_image", title: project.title, description: project.summary, images: [`/projects/${slug}/og.png`] },
   };
 }
 
